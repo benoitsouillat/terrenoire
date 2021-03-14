@@ -1,19 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<main class="d-flex flex-wrap justify-content-around align-items-center">
+<main class="admin">
 
 {% if chooseDog is defined %}
 
     {{ form_start(chooseDog) }}
-
-    <p>Chien choisi : </p>
-
+    
     {{ form_row(chooseDog.id, {'label': 'Choisir un chien : '}) }}
 
-
-
-        <button type="submit" class="btn btn-beige">Sélectionner</button>
+        <button type="submit" class="mb-4 btn btn-beige">Sélectionner</button>
 
     {{ form_end(chooseDog) }}
 
