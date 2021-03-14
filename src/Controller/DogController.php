@@ -30,8 +30,6 @@ class DogController extends AbstractController
      */
     public function ourdog(): Response
     {
-
-
         return $this->render('dog/ourdog.html.twig');
     }
 
@@ -58,6 +56,22 @@ class DogController extends AbstractController
     {
         return $this->render('dog/contact.html.twig');
     }
+        
+    /**
+     * @Route("/lof", name="lof")
+     */
+    public function lof(): Response
+    {
+        return $this->render('dog/lof.html.twig');
+    }    
+
+    /**
+    * @Route("/standard", name="standard")
+    */
+   public function standard(): Response
+   {
+       return $this->render('dog/standard.html.twig');
+   }
 
     /**
      * @Route ("/admin", name="admin")

@@ -1,6 +1,4 @@
 {% extends 'base.html.twig' %}
-
-
 {% block body %}
 
 <main id="accueil-page">
@@ -19,7 +17,7 @@
                     <div class="carousel-caption opacity-4">
                         <p>Nous sommes enchantés de vous annoncer la naissance des 13 chiots issus de Panama et Rock<br/>
                         Les réservations pour cette portée sont ouvertes.</p>
-                        <a href="/content/weeding.php" class="btn btn-success btn__anim">Voir nos mariages </a>
+                        <a href="{{ path('puppies') }}" class="btn btn-success btn__anim">Voir nos mariages </a>
                     </div>
                 </div>
                 <div class='carousel-item'>
@@ -27,7 +25,7 @@
                     <div class="carousel-caption opacity-4">
                         <p>Nos Cane Corso sont très sociables, <br/>
                         cependant ils savent très bien faire leur boulot de gardien.</p>
-                        <a href="/content/ourdog.php" class="btn btn-warning btn__anim">Voir les photos</a>
+                        <a href="{{ path('ourdog') }}" class="btn btn-warning btn__anim">Voir les photos</a>
                     </div>
                 </div>
                 <div class='carousel-item'>
@@ -35,7 +33,7 @@
                     <div class="carousel-caption opacity-4">
                         <p>Retrouvez notre page standard du Cane Corso <br/> 
                         Pour tout connaître sur la race.</p>
-                        <a href="/content/breed.php" class="btn btn-info btn__anim">Le Cane Corso</a>
+                        <a href="{{ path('breed') }}" class="btn btn-info btn__anim">Le Cane Corso</a>
                     </div>
                 </div>
                 <div class='carousel-item'>
@@ -43,7 +41,7 @@
                     <div class="carousel-caption opacity-4">
                         <p>Voici toutes nos coordonnées,<br/> 
                         N'hésitez pas à nous contacter pour plus d'informations.</p>
-                        <a href="/content/contact.php" class="btn btn-primary btn__anim">Contact</a>
+                        <a href="{{ path('contact') }}" class="btn btn-primary btn__anim">Contact</a>
                     </div>
                 </div>
             </div>
@@ -58,7 +56,5 @@
         </div>
     </section>
 </main>
-
-
 
 {% endblock %}
