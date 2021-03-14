@@ -1,0 +1,186 @@
+@import "../utilities/variables";
+
+
+/* Mixins && Extensions */
+
+@mixin puppy-card($colour, $back-colour) {
+    color: $colour;
+    background-color: $back-colour;
+}
+#puppy-page {
+
+    #puppiesTab {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        min-width: 300px;
+    }
+    .puppy {
+        &_male {
+            text-shadow: 2px 2px 2px black;
+            @include puppy-card($puppy-male, darken($puppy-male, 50));
+        }
+        &_female {
+            text-shadow: 2px 2px 2px black;
+            @include puppy-card($puppy-female, $puppy-female-back);
+        }
+        &__card {
+            overflow: hidden;
+            box-shadow: 2px 2px 2px $text-color;
+            border: solid 1px beige;
+            border-radius: 1%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 320px;
+            max-width: 380px;
+            height: 500px;
+            padding-bottom: 10px;
+            margin: 10px;
+            p {
+                font-weight: bold;
+            }
+        }
+
+        &_info-align {
+            order: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding-left: 10%;
+            width: 100%;
+            min-width: 100%;
+            min-height: 220px;
+            height: auto;
+
+            &_dogname {
+                order: -1;
+                color : black;
+                text-shadow: none;
+                text-decoration : underline;
+                text-align: center;
+                border : solid black 2px;
+                background-color : #E6BA7E;
+                width : 170px;
+                position: relative;
+                left: -11%;
+                margin-bottom: 0;
+            }
+            .btn-avail {
+                align-self: flex-end;
+                margin-right: 3%;
+                margin-top: 3%;
+                order: 1;
+            }
+            .fa {
+                order: 2;
+            }
+            p:nth-child(2)
+            {
+                order: 3;
+            }
+            p:nth-child(3)
+            {
+                order: 4;
+            }
+            p:nth-child(4)
+            {
+                order: 5;
+            }
+        }
+        &_img {
+            order: 1;
+            width: 100%;
+            min-width: 300px;
+            height: auto;
+            max-height: 220px;
+            position: relative;
+            left: 0;
+            top: 0;
+            border-bottom: 3px solid black;
+
+            &:hover {
+                transform: scale(1.03);
+                border-bottom: 3px solid black;
+                margin-bottom: 1px;
+            }
+            img {
+                max-height: 215px;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                border-radius: 1%;
+                border-bottom-left-radius: unset;
+                border-bottom-right-radius: unset;
+                object-fit: cover;
+            }
+        }
+
+        &_list-button {
+            order: 3;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.puppy-para {
+    text-align: center;
+    margin: 0 10%;
+
+    .para-right {
+        width: 90%;
+        text-align: end;
+        .btn {
+            margin-right: 20px;
+        }
+    }
+}
+@media all and (max-width: 700px)
+{
+    .puppy-para {
+        .para-right {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .btn {
+                margin: 0;
+                margin-top: 15px;
+                width: 70%;
+            }
+        }
+    }
+}
+
+@media all and (max-width: 635px)
+{
+    #puppy-page {
+
+        .puppy__card {
+            width: 90%;
+            max-width: unset;
+            min-height: 500px;
+            height: auto;
+            a {
+                max-width: unset;
+            }
+            .puppy_info-align {
+                padding-left: 10%;
+                width: 100%;
+                min-width: 100%;
+                max-width: 100%;
+                height: auto;
+                min-height: 200px;
+            }
+        }
+    }
+}
+

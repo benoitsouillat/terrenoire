@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main class="d-flex">
+
+<section class="w-25 ml-5">
+    {% if deleteDog is defined %}
+        <h3> {{ deleteDog }} </h3>
+    {% endif %}
+    <a href="{{ path('create_dog')}}" class="btn btn-beige">Créer un chien</a>
+    <br/>
+    <br/>
+    <a href="{{ path('update_dog')}}" class="btn btn-beige">Modifier un chien</a>
+</section>
+
+<section class="w-75">
+
+    <ul>
+    {% for dog in dogs %}
+
+
+    <h2>{{ dog.name }}</h2>
+    <li>
+        <p>{{ dog.name }} est un {{ dog.breed }} issu {{ dog.breeder }}<br/>{{ dog.name }} a vu le jour le {{ dog.birth | date('d/m/Y') }} et voici son N°LOF : {{ dog.lof }}</p>
+        <a href="{{ path('manage_dog', {'id': dog.id }) }}" class="btn btn-beige btn-xs text-center">Corriger ce chien</a>
+        <a href="{{ path('delete_dog', {'id': dog.id }) }}" class="btn btn-beige btn-xs text-center">Supprimer ce chien</a>
+        <br/><br/>
+    
+    </li>
+
+    {% endfor %}
+    </ul>
+</section>
+
+</main>
+{% endblock body %}

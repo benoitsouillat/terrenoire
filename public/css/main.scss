@@ -1,0 +1,140 @@
+@import "utilities/btn";
+@import "utilities/header";
+@import "utilities/footer";
+@import "utilities/menu";
+@import "utilities/bases";
+@import "utilities/form";
+
+/* Importation Identifiant par page */
+
+@import "pages/accueil";
+@import "pages/breed";
+@import "pages/standard";
+@import "pages/weedings";
+@import "pages/puppies";
+@import "pages/lof";
+@import "pages/ourdog";
+@import "pages/contact";
+@import "pages/coderural";
+@import "pages/error";
+
+/*-------------------------------Classes-------------------------------------*/
+
+.carousel-indicators-review {
+
+    left: unset;
+    top: 2%;
+    right: 1%;
+    bottom: unset;
+    margin-left: unset;
+    margin-right: unset;
+
+    li {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border: black 1px solid;
+        box-shadow: beige 2px 2px 5px;
+    }
+}
+
+
+.align-para-img {
+
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+
+    p {
+        width: 80%;
+        padding-right: 20px;
+    }
+}
+
+.title {
+    color: $text-color;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    text-shadow: $text-color 1px 1px 1px;
+
+    padding-bottom: 30px;
+}
+.no-a {
+    color: $text-color;
+    font-weight: bold;
+
+    &:hover {
+        color: $link-hover;
+        transform: scale(1.0);
+    }
+}
+
+.list-style {
+    list-style: none;
+    text-align: justify;
+    font-weight: bold;
+    line-height: 2.8em;
+}
+.repro-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 50px;
+}
+.dog-info {
+    padding-left: 100px;
+    text-align: center;
+    line-height: 150%;
+    text-shadow: white 1px 1px 2px;
+    color: $text-color;
+
+    h2 {
+        font-size: 1.8rem;
+    }
+    p {
+        font-size: 1.3rem;
+    }
+}
+
+/*--------------------- Page News -------------------------------*/
+.article {
+    border: white 1px solid;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+
+    &__head {
+        text-align: center;
+
+        .article__title {
+            text-decoration: underline $link-hover;
+        }
+    }
+    &__content {
+        display: flex;
+        justify-content: space-evenly;
+
+        .article__description {
+            text-align: justify;
+            padding: 20px;
+            line-height: 1.5rem;
+        }
+        .article__image {
+            max-width: 300px;
+        }
+    }
+    &__foot {
+        align-self: flex-end;
+
+        .article__date {
+            text-decoration: underline;
+        }
+        .article__author {
+            font-style: italic;
+        }
+    }
+}
