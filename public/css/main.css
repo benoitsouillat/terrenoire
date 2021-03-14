@@ -1242,7 +1242,7 @@ body p {
   padding-left: 25px;
 }
 
-#lof-page main {
+#lof-page > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1255,14 +1255,14 @@ body p {
           align-items: center;
 }
 
-#lof-page main section {
+#lof-page > div > section {
   width: 75%;
   padding-top: 40px;
   margin-bottom: 20px;
 }
 
 @media all and (max-width: 999px) {
-  #lof-page main section {
+  #lof-page > div > section {
     width: 98%;
   }
 }
