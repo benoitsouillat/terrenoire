@@ -18,6 +18,15 @@
         justify-content: center;
         flex-wrap: wrap;
 
+        &__img
+        {
+            overflow: hidden;
+            box-sizing: border-box;
+            object-fit: cover;
+
+            width: 80%;
+        }
+
         section {
             max-width: 400px;
             width: 50%;

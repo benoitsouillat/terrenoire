@@ -17,7 +17,7 @@
                 Elevage : {{ dog.breeder }} <br/>
                 Né le : {{ dog.birth | date('d/m/Y') }} <br/>
                 LOF : {{ dog.lof }} <br/><br/>
-
+            <img class="admin__list__img" src="/src/img/dogs/{{ dog.filename }}" />
             </p>
             <a href="{{ path('manage_dog', {'id': dog.id }) }}" class="btn btn-warning btn-xs text-center">Corriger ce chien</a>
             <a href="{{ path('delete_dog', {'id': dog.id }) }}" class="btn btn-danger btn-xs text-center">Supprimer ce chien</a>

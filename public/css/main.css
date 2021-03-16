@@ -2052,6 +2052,15 @@ body p {
       flex-wrap: wrap;
 }
 
+.admin__list__img {
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 80%;
+}
+
 .admin__list section {
   max-width: 400px;
   width: 50%;

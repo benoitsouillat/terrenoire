@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceListInterface;
@@ -119,8 +120,8 @@ class DogController extends AbstractController
                     ]
                 ])
                 ->add('sex')
-                ->add('litter')
                 ->add('lof')
+                ->add('imageFile', FileType::class)
                 ->getForm();
 
         $form->handleRequest($request);
