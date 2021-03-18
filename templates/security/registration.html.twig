@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section>
+    <h1>Incrivez-vous</h1>
+
+    <div>
+
+        {{ form_start(form, {
+            'attr': {
+                'class': "login"
+            }
+        }) }}
+
+        {{ form_row(form.username, {
+            'label': "Pseudo : ",
+        }) }}
+
+        {{ form_row(form.email, {
+            'label': "Adresse Email : ",
+            'attr': {
+                'placeholder': "Votre adresse Email",
+                }
+        }) }}
+
+        {{ form_row(form.password, {
+            'label': "Mot de passe : ",
+            'type': "password",
+        }) }}
+
+        {{ form_row(form.confirm_password, {
+            'label': "Confirmez le mot de passe : ",
+            'type': "password",
+
+        }) }}
+
+        <div>
+            <a href="{{ path('connexion') }}" class="btn btn-beige btn-xs">Se connecter</a>
+            <button type="submit" class="btn btn-beige">S'enregistrer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+</section>
+{% endblock %}

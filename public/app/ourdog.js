@@ -3,6 +3,7 @@ let image = document.getElementById("dog-card-img");
 let info = document.getElementById("dog-info");
 
 let figures = document.getElementsByClassName('vignet-dog');
+let data;
 
 const createBlock = (name) => {
 
@@ -56,7 +57,7 @@ const checkName = (name) => {
 }
 
 const figureIdCatch = (e) => {
-    let figureId = e.target.closest('a').id;
+    let figureId = e.target.closest('a').dataset;
         checkName(figureId);
 }
 
@@ -64,3 +65,5 @@ for (let i = 0; i < figures.length; i++)
 {
     figures[i].addEventListener("click", figureIdCatch);
 }
+console.log(data);
+

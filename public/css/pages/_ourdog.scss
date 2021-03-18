@@ -46,12 +46,16 @@
 
     min-width: 242px;
     max-width: 350px;
-    max-height: 250px;
+    height: 195px;
+    max-height: 200px;
     margin: 0 20px;
     margin-bottom: 25px;
+
+    overflow: hidden;
+
 }
 #ourdog a:hover figure{
-    border: 5px solid violet;
+    border: 3px solid violet;
     box-sizing: border-box;
     background-color: violet;
 }
@@ -72,10 +76,12 @@
 }
 #ourdog figure img {
     object-fit: cover;
-    max-width: 100%;
-    width: 100%;
-    max-height: 170px;
+    box-sizing: border-box;
+    height: 140px;
     border-radius: 5%;
+    width: 100%;
+    max-width: 350px;
+
 }
 #ourdog #dog-card {
     width: 100%;

@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Dog;
-use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceListInterface;
-use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceListInterface;
 
 class DogController extends AbstractController
 {
@@ -28,11 +29,22 @@ class DogController extends AbstractController
     }
     /**
      * @Route("/ourdog", name="ourdog")
+     * @Route("/ourdog/{id}", name="dog_info")
+     * 
      */
-    public function ourdog(): Response
+    public function ourdog(EntityManagerInterface $manager, Request $request): Response
     {
-        return $this->render('dog/ourdog.html.twig');
+
+        dump($request);
+
+        $repo = $this->getDoctrine()->getRepository(Dog::class);
+        $dogs = $repo->findAll();
+
+        return $this->render('dog/ourdog.html.twig', [
+            'dogs' => $dogs,
+        ]);
     }
+
 
     /**
      * @Route("/puppies", name="puppies")
@@ -121,6 +133,7 @@ class DogController extends AbstractController
                 ])
                 ->add('sex')
                 ->add('lof')
+                ->add('puce')
                 ->add('imageFile', FileType::class)
                 ->getForm();
 

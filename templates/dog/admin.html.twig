@@ -2,10 +2,11 @@
 
 {% block body %}
 <main class="admin">
+    {% if app.user %}
+
     <h1>Administration</h1>
-    {% if deleteDog is defined %}
-                    <h3> {{ deleteDog }} </h3>
-    {% endif %}
+
+    <h3>Bonjour {{ app.user.username }}</h3><br/><br/>
 
     <div class="admin__list">
         {% for dog in dogs %}
@@ -13,23 +14,39 @@
         <section>
             <h2>{{ dog.name }}</h2>
             <p>
+                {{ dog.breeder }} <br/>
                 Race : {{ dog.breed }} <br/>
-                Elevage : {{ dog.breeder }} <br/>
+                
                 Né le : {{ dog.birth | date('d/m/Y') }} <br/>
-                LOF : {{ dog.lof }} <br/><br/>
+                LOF : {{ dog.lof }} <br/>
+                Puce : {{ dog.puce }}<br/><br/>
             <img class="admin__list__img" src="/src/img/dogs/{{ dog.filename }}" />
             </p>
-            <a href="{{ path('manage_dog', {'id': dog.id }) }}" class="btn btn-warning btn-xs text-center">Corriger ce chien</a>
-            <a href="{{ path('delete_dog', {'id': dog.id }) }}" class="btn btn-danger btn-xs text-center">Supprimer ce chien</a>
-            <br/><br/>
+            <div class="admin__list__buttons">
+                <a href="{{ path('manage_dog', {'id': dog.id }) }}" class="btn btn-warning btn-xs text-center">Corriger ce chien</a>
+                <a href="{{ path('delete_dog', {'id': dog.id }) }}" class="btn btn-danger btn-xs text-center">Supprimer ce chien</a>
+            </div>
         </section>
         {% endfor %}
     </div>
 
+    
     <div class="admin__options">
         <a href="{{ path('create_dog')}}" class="btn btn-primary">Créer un chien</a>
         <a href="{{ path('update_dog')}}" class="btn btn-secondary">Modifier un chien</a>
+        <a href="{{ path('logout')}}" class="btn btn-danger">Se déconnecter</a>
     </div>
+    {% else %}
+
+    <section class="login">
+        <h2>Vous devez être connecter pour accéder à cette page ! </h2>
+        <br/>
+        <br/>
+        <div>
+            <a href="{{ path('connexion' )}}" class="btn btn-beige">Se connecter </a>
+        </div>
+    </section>
+    {% endif %}
 
 </main>
 {% endblock body %}

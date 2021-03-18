@@ -78,6 +78,11 @@ class Dog
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $puce;
+
 
     public function __construct()
     {
@@ -226,6 +231,18 @@ class Dog
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getPuce(): ?string
+    {
+        return $this->puce;
+    }
+
+    public function setPuce(string $puce): self
+    {
+        $this->puce = $puce;
 
         return $this;
     }

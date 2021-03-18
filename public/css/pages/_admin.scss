@@ -8,6 +8,11 @@
     margin: 0;
     padding: 0;
 
+    h1, h2, h3, h4 {
+        width: 100%;
+        text-align: center;
+    }
+
     &__list
     {
         width: 100%;
@@ -16,31 +21,45 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+        align-items: flex-start;
         flex-wrap: wrap;
 
         &__img
         {
             overflow: hidden;
+            border-radius: 5%;
+            box-shadow: beige 3px 2px 3px;
             box-sizing: border-box;
             object-fit: cover;
+            object-position: center center;
 
             width: 80%;
+            max-width: 320px;
+            height: 200px;
         }
 
         section {
             max-width: 400px;
+            min-width: 300px;
             width: 50%;
-            min-width: 250px;
-            min-height: 520px;
+            min-height: 500px;
             text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             flex-wrap: nowrap;
             border: solid $text-color 3px;
             border-radius: 5%;
             margin: 10px 20px;
+            overflow: hidden;
+        }
+        &__buttons
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-end;
         }
     }
     &__options
@@ -55,7 +74,10 @@
         }
     }
 
+
     .btn {
+        border: solid 2px black;
+        border-radius: unset ;
         &:hover {
             transform: scale(1.08);
         }
@@ -70,5 +92,49 @@
         margin-bottom: 30px;
     }
 
+
+}
+
+.login {
+
+    width: 100%;
+    min-height: 40vh;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    div {
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        font-size: 0.8rem;
+        overflow: hidden;
+
+        label {
+            min-width: 135px;
+            width: auto;
+            max-width: 35%;
+        }
+        a, button {
+            margin: 50px 20px 0 20px;
+            align-self: center;
+            justify-self: center;
+
+            &:hover {
+                transform: unset;
+                transform: scale(1.05);
+                background-color: darken(lemonchiffon, 10);
+                color: black;
+                font-weight: bold;
+            }
+        }
+
+    }
 
 }
