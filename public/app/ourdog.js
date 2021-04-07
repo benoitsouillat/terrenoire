@@ -3,67 +3,66 @@ let image = document.getElementById("dog-card-img");
 let info = document.getElementById("dog-info");
 
 let figures = document.getElementsByClassName('vignet-dog');
-let data;
+
+const dogInfoElement = document.querySelectorAll('[data-dog-to-js]');
+const dogInfoObject = Array.from(dogInfoElement).map(
+        item => JSON.parse(item.dataset.dogToJs)
+    );
+
+
+
 
 const createBlock = (name) => {
 
-    dogClass.forEach(elm => {
-        if (elm.dogName.toLowerCase() === name)
+    for(let i = 0; i < dogInfoObject.length; i++)
+    {
+        if (dogInfoObject[i].name.toLowerCase() === name)
         {
             fiche.classList.remove('card-hidden');
-            info.children[0].textContent = ' ' + elm.dogName + '  ' + elm.dogBreeder;
-            if (elm.dogSex === male)
+            info.children[0].textContent = ' ' + dogInfoObject[i].name + '  ' + dogInfoObject[i].breeder;
+            if (dogInfoObject[i].sex === "Mâle")
             {
-                info.children[1].textContent = " Né le " + elm.dogBirth;
+                info.children[1].textContent = " Né le " + dogInfoObject[i].birth;
                 info.children[2].classList.add("fa-mars");
                 info.children[2].classList.remove("fa-venus");
-
             }
             else 
             {
-                info.children[1].textContent = " Née le " + elm.dogBirth;
+                info.children[1].textContent = " Née le " + dogInfoObject[i].birth;
                 info.children[2].classList.add("fa-venus");
                 info.children[2].classList.remove("fa-mars");
 
             }
             info.children[0].classList.add("fa-paw");
             info.children[1].classList.add("fa-calendar-check");
-            info.children[2].textContent = elm.dogSex;
-            
-            if (elm.dogLitter === true)
+            info.children[2].textContent = dogInfoObject[i].sex;
+
+            if (dogInfoObject[i].litter === true)
             {
                 info.children[3].classList.remove("hidden");
-                info.children[3].href = elm.dogName.toLowerCase() + '1.php';
+                info.children[3].href = dogInfoObject[i].name.toLowerCase() + '1.php';
             }
             else
             {
                 info.children[3].classList.add("hidden");
             }
             
-            info.children[4].rel = elm.dogName.toLowerCase();
-            info.children[4].href = imgPath + elm.dogName.toLowerCase() + '-pres' + jpg;
+            
+            info.children[4].rel = dogInfoObject[i].name.toLowerCase();
+            info.children[4].href = "/src/img/dogs/" + dogInfoObject[i].imageName;
 
-            image.src = imgPath + elm.dogName.toLowerCase() + '-pres' + jpg;
-            image.alt = elm.dogName;
+            image.src = "/src/img/dogs/" + dogInfoObject[i].imageName;
+            image.alt = dogInfoObject[i].name;
         }
-    });
+    };
 }
 
-const checkName = (name) => {
-    dogClass.forEach(elm => {
-        if (elm.dogName.toLowerCase() === name)
-            createBlock(name);
-    });
+const dogNameCatch = (e) => {
+    let figureId = e.target.closest('a').dataset.dogName.toLowerCase();
+    console.log(figureId);
+    createBlock(figureId);
 }
 
-const figureIdCatch = (e) => {
-    let figureId = e.target.closest('a').dataset;
-        checkName(figureId);
-}
+document.addEventListener("click", dogNameCatch);
 
-for (let i = 0; i < figures.length; i++)
-{
-    figures[i].addEventListener("click", figureIdCatch);
-}
-console.log(data);
 

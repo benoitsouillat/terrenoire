@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main class="admin">
+
+    <h1>Administration</h1>
+
+    <a href="{{ path('admin_admin') }}" class="btn btn-beige">Retour Administration</a>
+    <div class="admin__options">
+        <a href="{{ path('admin_view_dog') }}" class="btn btn-danger">Gérer les chiens</a>
+        <a href="{{ path('admin_view_litter') }}" class="btn btn-warning">Gérer les portées</a>
+        <a href="{{ path('admin_view_puppy') }}" class="btn btn-pink">Gérer les chiots</a>
+        <a href="#" class="btn btn-secondary">Gérer les articles</a>
+        <a href="#" class="btn btn-info">Gérer les news</a>
+    </div>
+
+    <div class="admin__list">
+        {% for dog in dogs %}
+        <section>
+            <h2>{{ dog.name }}</h2>
+            <p>
+                {{ dog.breeder }} <br/>
+                Race : {{ dog.breed }} <br/>
+                Né le : {{ dog.birth | date('d/m/Y') }} <br/>
+                LOF : {{ dog.lof }} <br/>
+                Puce : {{ dog.puce }}<br/><br/>
+            <img class="admin__list__img" src="/src/img/dogs/{{ dog.filename }}" />
+            </p>
+            <div class="admin__list__buttons">
+                <a href="{{ path('admin_manage_dog', {'dog_id': dog.id }) }}" class="btn btn-warning btn-xs text-center">Corriger ce chien</a>
+                <a href="{{ path('admin_delete_dog', {'dog_id': dog.id }) }}" class="btn btn-danger btn-xs text-center">Supprimer ce chien</a>
+            </div>
+        </section>
+        {% endfor %}
+    </div>
+
+    
+    <div class="admin__options">
+        <a href="{{ path('admin_create_dog')}}" class="btn btn-primary">Créer un chien</a>
+        <a href="{{ path('logout')}}" class="btn btn-danger">Se déconnecter</a>
+    </div>
+
+    <section class="login">
+        <h2>Vous devez être connecter pour accéder à cette page ! </h2>
+        <br/>
+        <br/>
+        <div>
+            <a href="{{ path('connexion' )}}" class="btn btn-beige">Se connecter </a>
+        </div>
+    </section>
+
+</main>
+{% endblock body %}

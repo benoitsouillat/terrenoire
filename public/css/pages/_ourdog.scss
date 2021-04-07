@@ -27,6 +27,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
 #ourdog  div > div {
     min-width: 242px;
@@ -86,6 +88,8 @@
 #ourdog #dog-card {
     width: 100%;
     max-width: 100%;
+    max-height: 370px;
+    overflow: hidden;
 
     border: beige 5px solid;
     border-radius: 1%;
@@ -104,7 +108,11 @@
 
 #dog-card img {
     max-width: 35%;
+    max-height: 320px;
     box-shadow: beige 1px 1px 20px;
+    object-fit: cover;
+    object-position: center center;
+    overflow: hidden;
 }
 #dog-card img:hover {
     transform: scale(1.1);

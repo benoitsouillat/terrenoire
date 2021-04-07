@@ -125,12 +125,12 @@ class Litter
         return $this;
     }
 
-    public function getDog(): ?dog
+    public function getDog(): ?Dog
     {
         return $this->dog;
     }
 
-    public function setDog(?dog $dog): self
+    public function setDog(?Dog $dog): self
     {
         $this->dog = $dog;
 

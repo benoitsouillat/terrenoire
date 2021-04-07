@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main class="admin">
+
+    <a href="{{ path('admin_admin') }}" class="btn btn-beige">Retour Administration</a>
+    <div class="admin__options">
+        <a href="{{ path('admin_view_dog') }}" class="btn btn-danger">Gérer les chiens</a>
+        <a href="{{ path('admin_view_litter') }}" class="btn btn-warning">Gérer les portées</a>
+        <a href="{{ path('admin_view_puppy') }}" class="btn btn-pink">Gérer les chiots</a>
+        <a href="#" class="btn btn-secondary">Gérer les articles</a>
+        <a href="#" class="btn btn-info">Gérer les news</a>
+    </div>
+
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+
+    {{ form_end(form) }}
+
+
+
+
+
+
+
+</main>
+{% endblock body %}

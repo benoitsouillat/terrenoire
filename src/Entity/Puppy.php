@@ -43,7 +43,7 @@ class Puppy
     private $sex;
 
     /**
-     * @ORM\ManyToOne(targetEntity=litter::class, inversedBy="puppies")
+     * @ORM\ManyToOne(targetEntity=Litter::class, inversedBy="puppies")
      * @ORM\JoinColumn(nullable=false)
      */
     private $litter;

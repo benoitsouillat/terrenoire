@@ -7,9 +7,21 @@
         <section>
             <h3 class="hidden">Nos Reproducteurs</h3>
             <div>
+
                 {% for dog in dogs %}
 
-                <a href="#dog-card" data-dog-name="{{ dog.name }}" class="vignet-dog" id="{{ dog.name }}">
+                {% set dogToJs = {
+                    id: dog.id,
+                    name: dog.name,
+                    birth: dog.birth|date('d/m/Y'),
+                    breed: dog.breed,
+                    breeder: dog.breeder,
+                    sex: dog.sex,
+                    lof: dog.lof,
+                    imageName: dog.filename,
+                } %}
+
+                <a href="#dog-card" data-dog-name='{{ dog.name }}' data-dog-to-js='{{ dogToJs|json_encode|e('html_attr')}}' class="vignet-dog" id="{{ dog.name }}">
                     <figure>
                         <img src="/src/img/dogs/{{ dog.filename }}" alt="{{ dog.name }} {{ dog.breeder }}"/>
                         <figcaption>
@@ -66,5 +78,4 @@
 
 
 {% block javascripts %}
-    <script type="text/javascript" src="/app/ourdog.js" ></script>
 {% endblock javascripts %}

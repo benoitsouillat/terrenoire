@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -34,8 +35,6 @@ class DogController extends AbstractController
      */
     public function ourdog(EntityManagerInterface $manager, Request $request): Response
     {
-
-        dump($request);
 
         $repo = $this->getDoctrine()->getRepository(Dog::class);
         $dogs = $repo->findAll();
@@ -87,70 +86,6 @@ class DogController extends AbstractController
    }
 
     /**
-     * @Route ("/admin", name="admin")
-     */
-    public function admin(Request $request): Response
-    {
-        $repo = $this->getDoctrine()->getRepository(Dog::class);
-        $dogs = $repo->findAll();
-
-        return $this->render('dog/admin.html.twig', [
-            'dogs' => $dogs
-        ]);
-    }
-
-    /**
-     * @Route("/create_dog", name="create_dog")
-     * @Route("/manage_dog/{id}", name="manage_dog")
-     */
-    public function manageDog(Dog $dog = null, Request $request) {
-
-        if (!$dog){
-            $dog = new Dog();
-        }
-        $manager = $this->getDoctrine()->getManager();
-
-        $form = $this->createFormBuilder($dog)
-                ->add('name')
-                ->add('birth', DateType::class, [
-                    'widget' => 'single_text',
-                    'html5' => true,
-                ] )
-                ->add('breed', ChoiceType::class, [
-                    'choices' => [
-                        'Cane Corso' => 'Cane Corso',
-                        'Teckel' => 'Teckel',
-                        'Whippet' => 'Whippet',
-                    ],
-                ])
-                ->add('breeder', ChoiceType::class, [
-                    'choices' => [
-                        'Le Temple de Jade' => 'du Temple de Jade',
-                        'Le Domaine des Terres Noires' => 'du Domaine des Terres Noires',
-                        'La Romance des Damoiseaux' => 'de la Romance des Damoiseaux',
-                        'Corso Di Munteanu' => 'di Corso di Munteanu'
-                    ]
-                ])
-                ->add('sex')
-                ->add('lof')
-                ->add('puce')
-                ->add('imageFile', FileType::class)
-                ->getForm();
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $manager->persist($dog);
-            $manager->flush();
-            return $this->redirectToRoute('admin');
-        }
-        return $this->render('dog/admin_form.html.twig', [
-            'formDog' => $form->createView(),
-            'form_action' => 'Valider le chien',
-        ]);
-    }
-
-    /**
      * @Route("/manage_dog", name="update_dog")
      */
     public function updateDog(Dog $dog = null, Request $request) {
@@ -187,21 +122,4 @@ class DogController extends AbstractController
             'form_action' => 'Modifier un chien',
         ]);
     }
-
-    /**
-     * @Route("/delete/{id}", name="delete_dog")
-     * 
-     */
-    public function delete(Dog $dog):Response {
-
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($dog);
-        $manager->flush();
-
-        return $this->redirectToRoute('admin', [
-            'deleteDog' => 'Le chien a bien été supprimé ! ',
-        ]);
-    }
-
-
 }

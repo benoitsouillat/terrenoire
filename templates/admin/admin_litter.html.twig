@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main class="admin">
+
+
+    <a href="{{ path('admin_admin') }}" class="btn btn-beige">Retour Administration</a>
+    <div class="admin__options">
+        <a href="{{ path('admin_view_dog') }}" class="btn btn-danger">Gérer les chiens</a>
+        <a href="{{ path('admin_view_litter') }}" class="btn btn-warning">Gérer les portées</a>
+        <a href="{{ path('admin_view_puppy') }}" class="btn btn-pink">Gérer les chiots</a>
+        <a href="#" class="btn btn-secondary">Gérer les articles</a>
+        <a href="#" class="btn btn-info">Gérer les news</a>
+    </div>
+
+    <div class="admin__options">
+        <a href="{{ path('admin_create_litter')}}" class="btn btn-primary">Créer une portée</a>
+        <a href="{{ path('logout')}}" class="btn btn-danger">Se déconnecter</a>
+    </div>
+
+    <div>
+        {% for litter in litters %}
+            <p>Mariage de : {{ litter.mom }} et de {{ litter.dad }}</p>
+            <p>{{litter.nbMale}} mâles et {{litter.nbFemale}} femelles sont nés  ce {{litter.birth | date('d/m/Y')}}</p>
+
+            <div class="admin__list__buttons">
+                <a href="{{ path('admin_manage_litter', { 'litter_id' : litter.id } )}} " class="btn btn-xs btn-beige">Portée de {{ litter.dog.name }}</a>
+                <a href="{{ path('admin_delete_litter', {'litter_id' : litter.id} )}}" class="btn btn-xs btn-danger">Supprimer cette portée </a>
+            </div>
+        {% endfor %}
+    </div>
+
+</main>
+{% endblock body %}

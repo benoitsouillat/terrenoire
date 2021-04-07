@@ -1310,6 +1310,11 @@ body p {
           flex-direction: row;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 #ourdog div > div {
@@ -1375,6 +1380,8 @@ body p {
 #ourdog #dog-card {
   width: 100%;
   max-width: 100%;
+  max-height: 370px;
+  overflow: hidden;
   border: beige 5px solid;
   border-radius: 1%;
   -webkit-box-shadow: 2px 2px 5px beige;
@@ -1402,8 +1409,14 @@ body p {
 
 #dog-card img {
   max-width: 35%;
+  max-height: 320px;
   -webkit-box-shadow: beige 1px 1px 20px;
           box-shadow: beige 1px 1px 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+  overflow: hidden;
 }
 
 #dog-card img:hover {

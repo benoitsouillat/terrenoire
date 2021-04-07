@@ -19,6 +19,32 @@ class DogRepository extends ServiceEntityRepository
         parent::__construct($registry, Dog::class);
     }
 
+    public function __toString()
+    {
+        return $this->__toString();
+    }
+
+
+    public function getFemale()
+    {
+        return $this->createQueryBuilder('u')
+                    ->andWhere('u.sex = :female')
+                    ->setParameter('female', 'Femelle')
+                    ->distinct()
+                    //->getQuery()
+                    //->getResult()
+                    ;
+    }
+    public function getMale()
+    {
+        return $this->createQueryBuilder('u')
+                    ->andWhere('u.sex = :male')
+                    ->setParameter('male', 'Mâle')
+                    ->distinct()
+                    //->getQuery()
+                    //->getResult()
+                    ;
+    }
 
     // /**
     //  * @return Dog[] Returns an array of Dog objects

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main class="admin">
+
+{% if chooseDog is defined %}
+
+    {{ form_start(chooseDog) }}
+    
+    {{ form_row(chooseDog.id, {'label': 'Choisir un chien : '}) }}
+
+        <button type="submit" class="mb-4 btn btn-beige">Sélectionner</button>
+
+    {{ form_end(chooseDog) }}
+
+{% endif %}
+
+{% if formDog is defined %}
+
+    {{ form_start(formDog, {'attr': {'class': 'logina'}}) }}
+
+    <h4 class="underline text-center"> {{ form_action }} </h4>
+
+        {{ form_row(formDog.name, {'label': 'Nom du chien : '}) }}
+
+        {{ form_row(formDog.birth, {'label': 'Date de Naissance : '}) }}
+
+        {{ form_row(formDog.breed, {'label': 'Race : '}) }}
+
+        {{ form_row(formDog.breeder, {'label': 'Elevage : '}) }}
+
+        {{ form_row(formDog.imageFile, {'label': 'Choisir son image : ', 'value': '{{ image }}'}) }}
+
+        {{ form_row(formDog.sex, {'label': 'Choisir son sexe : ', 'type': 'radio'}) }}
+
+        {{ form_row(formDog.lof, {'label': 'Numéro LOF : '}) }}
+        {{ form_row(formDog.puce, {'label': 'Numéro d\'identification : '}) }}
+
+        <button type="submit" class="btn btn-beige">{{ form_action }}</button>
+        <br/>
+        <br/>
+    {{ form_end(formDog) }}
+
+{% endif %}
+
+
+
+
+
+</main>
+{% endblock body %}
