@@ -9,6 +9,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class DogType extends AbstractType
 {
@@ -16,7 +17,7 @@ class DogType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('birth', DateType::class, [
+            ->add('birthdate', DateType::class, [
                 'widget' => 'single_text',
                 'html5' => true,
             ] )
@@ -24,15 +25,13 @@ class DogType extends AbstractType
                 'choices' => [
                     'Cane Corso' => 'Cane Corso',
                     'Teckel' => 'Teckel',
-                    'Whippet' => 'Whippet',
                 ]
             ])
             ->add('breeder', ChoiceType::class, [
                 'choices' => [
-                    'Le Temple de Jade' => 'du Temple de Jade',
                     'Le Domaine des Terres Noires' => 'du Domaine des Terres Noires',
-                    'La Romance des Damoiseaux' => 'de la Romance des Damoiseaux',
-                    'Corso Di Munteanu' => 'di Corso di Munteanu'
+                    'Le Temple de Jade' => 'du Temple de Jade',
+                    'Corso Di Munteanu' => 'di Corso di Munteanu',
                 ]
             ])
             ->add('sex', ChoiceType::class, [
@@ -41,10 +40,20 @@ class DogType extends AbstractType
                     'Femelle' => 'Femelle',
                 ]
             ])
-            ->add('lof')
-            ->add('puce')
+            ->add('lof', TextType::class)
+            ->add('microship', TextType::class)
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
+            ])
+            ->add('color', ChoiceType::class, [
+                'choices' => [
+                    'Noir' => 'Noir',
+                    'Fauve' => 'Fauve',
+                    'Gris' => ' Gris',
+                    'Froment' => 'Froment',
+                    'Bringé Noir' => 'Bringé Noir',
+                    'Bringé Gris' => 'Bringé Gris',
+                ]
             ])
         ;
     }

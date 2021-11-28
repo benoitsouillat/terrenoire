@@ -20,16 +20,6 @@ class Litter
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $dad;
-
-    /**
      * @ORM\Column(type="smallint", nullable=true)
      */
     private $nbFemale;
@@ -40,53 +30,30 @@ class Litter
     private $nbMale;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $birth;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=dog::class, inversedBy="litters")
+     * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="litters")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $dog;
+    private $dogMom;
 
     /**
-     * @ORM\OneToMany(targetEntity=Puppy::class, mappedBy="litter")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $puppies;
+    private $name;
 
-    public function __construct()
-    {
-        $this->puppies = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $birthdate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Dog::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $dad;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMom(): ?string
-    {
-        return $this->mom;
-    }
-
-    public function setMom(string $mom): self
-    {
-        $this->mom = $mom;
-
-        return $this;
-    }
-
-    public function getDad(): ?string
-    {
-        return $this->dad;
-    }
-
-    public function setDad(string $dad): self
-    {
-        $this->dad = $dad;
-
-        return $this;
     }
 
     public function getNbFemale(): ?int
@@ -113,56 +80,50 @@ class Litter
         return $this;
     }
 
-    public function getBirth(): ?\DateTimeInterface
+    public function getDogMom(): ?Dog
     {
-        return $this->birth;
+        return $this->dogMom;
     }
 
-    public function setBirth(\DateTimeInterface $birth): self
+    public function setDogMom(?Dog $dogMom): self
     {
-        $this->birth = $birth;
+        $this->dogMom = $dogMom;
 
         return $this;
     }
 
-    public function getDog(): ?Dog
+    public function getName(): ?string
     {
-        return $this->dog;
+        return $this->name;
     }
 
-    public function setDog(?Dog $dog): self
+    public function setName(?string $name): self
     {
-        $this->dog = $dog;
+        $this->name = $name;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Puppy[]
-     */
-    public function getPuppies(): Collection
+    public function getBirthdate(): ?\DateTimeInterface
     {
-        return $this->puppies;
+        return $this->birthdate;
     }
 
-    public function addPuppy(Puppy $puppy): self
+    public function setBirthdate(\DateTimeInterface $birthdate): self
     {
-        if (!$this->puppies->contains($puppy)) {
-            $this->puppies[] = $puppy;
-            $puppy->setLitter($this);
-        }
+        $this->birthdate = $birthdate;
 
         return $this;
     }
 
-    public function removePuppy(Puppy $puppy): self
+    public function getDad(): ?dog
     {
-        if ($this->puppies->removeElement($puppy)) {
-            // set the owning side to null (unless already changed)
-            if ($puppy->getLitter() === $this) {
-                $puppy->setLitter(null);
-            }
-        }
+        return $this->dad;
+    }
+
+    public function setDad(?dog $dad): self
+    {
+        $this->dad = $dad;
 
         return $this;
     }

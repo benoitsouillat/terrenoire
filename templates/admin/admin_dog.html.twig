@@ -9,7 +9,7 @@
     <div class="admin__options">
         <a href="{{ path('admin_view_dog') }}" class="btn btn-danger">Gérer les chiens</a>
         <a href="{{ path('admin_view_litter') }}" class="btn btn-warning">Gérer les portées</a>
-        <a href="{{ path('admin_view_puppy') }}" class="btn btn-pink">Gérer les chiots</a>
+        <a href="#" class="btn btn-pink">Gérer les chiots</a>
         <a href="#" class="btn btn-secondary">Gérer les articles</a>
         <a href="#" class="btn btn-info">Gérer les news</a>
     </div>
@@ -21,9 +21,9 @@
             <p>
                 {{ dog.breeder }} <br/>
                 Race : {{ dog.breed }} <br/>
-                Né le : {{ dog.birth | date('d/m/Y') }} <br/>
+                Né le : {{ dog.birthdate | date('d/m/Y') }} <br/>
                 LOF : {{ dog.lof }} <br/>
-                Puce : {{ dog.puce }}<br/><br/>
+                Puce : {{ dog.microship }}<br/><br/>
             <img class="admin__list__img" src="/src/img/dogs/{{ dog.filename }}" />
             </p>
             <div class="admin__list__buttons">

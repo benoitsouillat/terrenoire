@@ -109,18 +109,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
             $repo = $this->getDoctrine()->getRepository(Dog::class);
             $dogs = $repo->findAll();
 
-            $arr = [];
-            foreach($dogs as $dog)
-            {
-                $arr[] = $dog->getName();
-            }
-
+            $males = $repo->findBy(
+                ['sex' => 'Mâle'],
+            );
+            $lices = $repo->findBy(
+                ['sex' => 'Femelle']
+            );
             if(!$litter){
                 $litter = new Litter();
             }
-
             $form = $this->createForm(LitterType::class, $litter, [
-                'dogs' => $arr,
+                'males' => $males,
+                'lices' => $lices,
             ]);
 
             $form->handleRequest($request);
@@ -149,58 +149,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
             return $this->redirectToRoute('admin_view_litter');
         }
 
-        /**
-         * @Route("/view_puppy", name="view_puppy")
-         */
-        public function viewPuppy() :Response
-        {
-            $repo = $this->getDoctrine()->getRepository(Puppy::class);
-            $puppies = $repo->findAll();
-
-            return $this->render('admin/admin_puppy.html.twig', [
-                'puppies' => $puppies,
-            ]);
-        }
-        /**
-         * @Route("create_puppy", name="create_puppy")
-         * @Route("manage_puppy/{puppy_id}", name="manage_puppy" )
-         * @ParamConverter("puppy", options={"id" = "puppy_id"})
-         */
-        public function managePuppy(Request $request, EntityManagerInterface $manager, Puppy $puppy = null):Response
-        {
-
-            if(!$puppy)
-            {
-                $puppy = new Puppy();
-            }
-            $form = $this->createForm(PuppyType::class, $puppy);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid())
-            {
-                $manager->persist($puppy);
-                $manager->flush();
-                return $this->redirectToRoute('admin_view_puppy');
-            }
-            
-
-            return $this->render('admin/manage_puppy.html.twig', [
-                'form' => $form->createView(),
-
-            ]);
-        }
-
-
-        /**
-         * @Route("delete_puppy/{puppy_id}", name="delete_puppy")
-         * @ParamConverter("puppy", options={"id" = "puppy_id"})
-         */
-        public function deletePuppy(Puppy $puppy, EntityManagerInterface $manager) :Response
-        {
-            $manager->remove($puppy);
-            $manager->flush();
-            redirectToRoute("admin_view_puppy");
-            
-        }
 
     }
 ?>

@@ -26,26 +26,25 @@ class LitterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $values = [];
-        for($i = 0; $i < sizeof($options['dogs']); $i++)
-        {
-            $values[$options['dogs'][$i]] = $options['dogs'][$i];
-        }
 
+        $males = $options['males'];
         $builder
-            ->add('mom', ChoiceType::class, [
-                'choices' => $values,
-            ])
             ->add('dad', ChoiceType::class, [
-                'choices' => $values,
+                'choices' => $males,
+                'choice_label' => function($value) {
+                    return $value->getName();
+                },
+                'choice_value' => 'name',
+            ])
+            ->add('dogMom', ChoiceType::class, [
+                'choices' => $options['lices'],
+                'choice_label' => function($value) {
+                    return $value->getName();
+                }
             ])
             ->add('nbFemale', IntegerType::class)
             ->add('nbMale', IntegerType::class)
-            ->add('birth', DateType::class)
-            ->add('dog', EntityType::class, [
-                'class' => Dog::class,
-                'choice_label' => 'name',
-            ])
+            ->add('birthdate', DateType::class)
         ;
     }
 
@@ -55,7 +54,8 @@ class LitterType extends AbstractType
             'data_class' => Litter::class,
             'id' => [],
             'name' => [],
-            'dogs' => [],
         ]);
+        $resolver->setRequired('lices');
+        $resolver->setRequired('males');
     }
 }

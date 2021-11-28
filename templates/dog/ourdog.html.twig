@@ -13,7 +13,7 @@
                 {% set dogToJs = {
                     id: dog.id,
                     name: dog.name,
-                    birth: dog.birth|date('d/m/Y'),
+                    birth: dog.birthdate|date('d/m/Y'),
                     breed: dog.breed,
                     breeder: dog.breeder,
                     sex: dog.sex,

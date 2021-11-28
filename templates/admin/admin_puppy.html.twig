@@ -10,7 +10,7 @@
     <div class="admin__options">
         <a href="{{ path('admin_view_dog') }}" class="btn btn-danger">Gérer les chiens</a>
         <a href="{{ path('admin_view_litter') }}" class="btn btn-warning">Gérer les portées</a>
-        <a href="{{ path('admin_view_puppy') }}" class="btn btn-pink">Gérer les chiots</a>
+        <a href="#" class="btn btn-pink">Gérer les chiots</a>
         <a href="#" class="btn btn-secondary">Gérer les articles</a>
         <a href="#" class="btn btn-info">Gérer les news</a>
     </div>
@@ -20,7 +20,14 @@
         <a href="{{ path('logout')}}" class="btn btn-danger">Se déconnecter</a>
     </div>
 
-    <p> Admin Puppy Page</p>
+    {% for puppy in puppies %}
+    <div>
+        <h4> {{ puppy.name }} </h4>
+        <p>Née le : {{ puppy.birth | date('d m Y')}} est un chiot de {{ puppy.litter.mom }}</p>
+        <p>Elevage {{ puppy.breeder }}</p>
+        <a href="{{ path('admin_delete_puppy', {'puppy_id' : puppy.id} )}}" class="btn btn-warning">Supprimer le chiot</a>
+    </div>
+    {% endfor %}
 
 </main>
 

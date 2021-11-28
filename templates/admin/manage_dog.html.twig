@@ -23,18 +23,21 @@
 
         {{ form_row(formDog.name, {'label': 'Nom du chien : '}) }}
 
-        {{ form_row(formDog.birth, {'label': 'Date de Naissance : '}) }}
+        {{ form_row(formDog.birthdate, {'label': 'Date de Naissance : '}) }}
 
         {{ form_row(formDog.breed, {'label': 'Race : '}) }}
 
         {{ form_row(formDog.breeder, {'label': 'Elevage : '}) }}
+
+        {{ form_row(formDog.color, {'label': 'Robe : '}) }}
 
         {{ form_row(formDog.imageFile, {'label': 'Choisir son image : ', 'value': '{{ image }}'}) }}
 
         {{ form_row(formDog.sex, {'label': 'Choisir son sexe : ', 'type': 'radio'}) }}
 
         {{ form_row(formDog.lof, {'label': 'Numéro LOF : '}) }}
-        {{ form_row(formDog.puce, {'label': 'Numéro d\'identification : '}) }}
+        
+        {{ form_row(formDog.microship, {'label': 'Numéro d\'identification : '}) }}
 
         <button type="submit" class="btn btn-beige">{{ form_action }}</button>
         <br/>

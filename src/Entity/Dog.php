@@ -44,11 +44,6 @@ class Dog
     private $name;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $birth;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $breed;
@@ -69,19 +64,29 @@ class Dog
     private $lof;
 
     /**
-     * @ORM\OneToMany(targetEntity=Litter::class, mappedBy="dog")
-     */
-    private $litters;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="date")
      */
-    private $puce;
+    private $birthdate;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $microship;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $color;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Litter::class, mappedBy="dogMom")
+     */
+    private $litters;
 
 
     public function __construct()
@@ -102,18 +107,6 @@ class Dog
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getBirth(): ?\DateTimeInterface
-    {
-        return $this->birth;
-    }
-
-    public function setBirth(\DateTimeInterface $birth): self
-    {
-        $this->birth = $birth;
 
         return $this;
     }
@@ -166,36 +159,6 @@ class Dog
         return $this;
     }
 
-    /**
-     * @return Collection|Litter[]
-     */
-    public function getLitters(): Collection
-    {
-        return $this->litters;
-    }
-
-    public function addLitter(Litter $litter): self
-    {
-        if (!$this->litters->contains($litter)) {
-            $this->litters[] = $litter;
-            $litter->setDog($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLitter(Litter $litter): self
-    {
-        if ($this->litters->removeElement($litter)) {
-            // set the owning side to null (unless already changed)
-            if ($litter->getDog() === $this) {
-                $litter->setDog(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getImageFile(): ?File
     {
         return $this->imageFile;
@@ -235,16 +198,71 @@ class Dog
         return $this;
     }
 
-    public function getPuce(): ?string
+    public function getBirthdate(): ?\DateTimeInterface
     {
-        return $this->puce;
+        return $this->birthdate;
     }
 
-    public function setPuce(string $puce): self
+    public function setBirthdate(\DateTimeInterface $birthdate): self
     {
-        $this->puce = $puce;
+        $this->birthdate = $birthdate;
 
         return $this;
     }
+
+    public function getMicroship(): ?int
+    {
+        return $this->microship;
+    }
+
+    public function setMicroship(?int $microship): self
+    {
+        $this->microship = $microship;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Litter[]
+     */
+    public function getLitters(): Collection
+    {
+        return $this->litters;
+    }
+
+    public function addLitter(Litter $litter): self
+    {
+        if (!$this->litters->contains($litter)) {
+            $this->litters[] = $litter;
+            $litter->setDogMom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLitter(Litter $litter): self
+    {
+        if ($this->litters->removeElement($litter)) {
+            // set the owning side to null (unless already changed)
+            if ($litter->getDogMom() === $this) {
+                $litter->setDogMom(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }
