@@ -91,7 +91,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
         public function viewLitter()
         {
             $repo = $this->getDoctrine()->getRepository(Litter::class);
-            $litters = $repo->findAll();
+            $litters = $repo->findByBirthdate();
+            /*$litters = $repo->findBy(
+                [],                             // Criteria
+                ['birthdate' => 'DESC'],        // Order By
+                50,                             // Limit
+            ); */
 
             return $this->render('admin/admin_litter.html.twig', [
                 'litters' => $litters,

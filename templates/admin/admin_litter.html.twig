@@ -20,13 +20,15 @@
 
     <div>
         {% for litter in litters %}
-            <p>Mariage de : {{ litter.dogMom.name }} et de {{ litter.dad.name }}</p>
+        <section class="border border-white m-4 p-2">
+            <h6 class="mt-1">Mariage de : {{ litter.dogMom.name }} et de {{ litter.dad.name }}</h6>
             <p>{{litter.nbMale}} mâles et {{litter.nbFemale}} femelles sont nés  ce {{litter.birthdate | date('d/m/Y')}}</p>
 
             <div class="admin__list__buttons">
                 <a href="{{ path('admin_manage_litter', { 'litter_id' : litter.id } )}} " class="btn btn-xs btn-beige">Portée de {{ litter.dogMom.name }}</a>
                 <a href="{{ path('admin_delete_litter', {'litter_id' : litter.id} )}}" class="btn btn-xs btn-danger">Supprimer cette portée </a>
             </div>
+        </section>
         {% endfor %}
     </div>
 

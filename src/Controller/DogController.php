@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Dog;
+use App\Entity\Litter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +51,17 @@ class DogController extends AbstractController
      */
     public function puppies(): Response
     {
-        return $this->render('dog/puppies.html.twig');
+        $repo = $this->getDoctrine()->getRepository(Litter::class);
+        $litters = $repo->findByBirthdate();
+        /*$litters = $repo->findBy(
+            [],                             // Criteria
+            ['birthdate' => 'DESC'],        // Order By
+            50,                             // Limit
+        );*/
+
+        return $this->render('dog/puppies.html.twig', [
+            'litters' => $litters,
+        ]);
     }
 
     /**

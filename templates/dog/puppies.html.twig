@@ -4,6 +4,15 @@
 
 <main>
     <section id="weedings">
+        {% for litter in litters %}
+        <h6 class="mt-5"> Portée de  {{litter.dogMom.name}} </h6>
+        <p>{{litter.nbMale}} jolis petits mâles et {{litter.nbFemale}} femelles sont nées le {{litter.birthdate | date('d:M:y')}} .</p>
+        <div class="w-100 d-flex flex-row justify-content-center">
+            <img class="w-25 align-self-center" alt='Portée de {{litter.dogMom.name}}' src="{{asset( 'src/img/dogs/' ~ litter.dogMom.filename   )}}" />
+            <img class="w-25 align-self-center" alt='Portée de {{litter.dad.name}}' src="{{asset( 'src/img/dogs/' ~ litter.dad.filename   )}}" />
+        </div>
+        {% endfor %}
+
     </section>
 </main>
 

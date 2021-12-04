@@ -52,8 +52,6 @@ class LitterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Litter::class,
-            'id' => [],
-            'name' => [],
         ]);
         $resolver->setRequired('lices');
         $resolver->setRequired('males');

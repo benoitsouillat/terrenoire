@@ -19,6 +19,16 @@ class LitterRepository extends ServiceEntityRepository
         parent::__construct($registry, Litter::class);
     }
 
+
+    public function findByBirthdate()
+    {
+        return $this->createQueryBuilder('litter')
+            ->orderBy('litter.birthdate', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Litter[] Returns an array of Litter objects
     //  */
