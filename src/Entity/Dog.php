@@ -33,6 +33,7 @@ class Dog
 
     /**
      * @var File|null
+     * @Assert\File( maxSize= "8M")
      * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
      */
     private $imageFile;
@@ -210,12 +211,12 @@ class Dog
         return $this;
     }
 
-    public function getMicroship(): ?int
+    public function getMicroship(): ?string
     {
         return $this->microship;
     }
 
-    public function setMicroship(?int $microship): self
+    public function setMicroship(?string $microship): self
     {
         $this->microship = $microship;
 

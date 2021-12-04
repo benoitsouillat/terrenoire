@@ -113,13 +113,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
             $repo = $this->getDoctrine()->getRepository(Dog::class);
             $dogs = $repo->findAll();
+            $males = $repo->findMale();
+            $lices = $repo->findFemale();
 
-            $males = $repo->findBy(
-                ['sex' => 'Mâle'],
-            );
-            $lices = $repo->findBy(
-                ['sex' => 'Femelle']
-            );
             if(!$litter){
                 $litter = new Litter();
             }

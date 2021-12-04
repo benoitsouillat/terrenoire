@@ -31,10 +31,10 @@ class DogController extends AbstractController
     }
     /**
      * @Route("/ourdog", name="ourdog")
-     * @Route("/ourdog/{id}", name="dog_info")
+     * @Route("/ourdog/{id}", name="dog_info") // Evite les URLs foireuses 
      * 
      */
-    public function ourdog(EntityManagerInterface $manager, Request $request): Response
+    public function ourdog(): Response
     {
 
         $repo = $this->getDoctrine()->getRepository(Dog::class);
@@ -45,7 +45,6 @@ class DogController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/puppies", name="puppies")
      */
@@ -53,11 +52,6 @@ class DogController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Litter::class);
         $litters = $repo->findByBirthdate();
-        /*$litters = $repo->findBy(
-            [],                             // Criteria
-            ['birthdate' => 'DESC'],        // Order By
-            50,                             // Limit
-        );*/
 
         return $this->render('dog/puppies.html.twig', [
             'litters' => $litters,
@@ -96,41 +90,4 @@ class DogController extends AbstractController
        return $this->render('dog/standard.html.twig');
    }
 
-    /**
-     * @Route("/manage_dog", name="update_dog")
-     */
-    public function updateDog(Dog $dog = null, Request $request) {
-
-
-        $repo = $this->getDoctrine()->getRepository(Dog::class);
-        $dogs = $repo->findAll();
-        $manager = $this->getDoctrine()->getManager();
-
-        $chooseDogForm = $this->createFormBuilder($dog)
-                    ->add('id', EntityType::class, [
-                        'class' => Dog::class,
-                        'choice_label' => function($dogs) {
-                            return $dogs->getName();
-                        }
-                    ])
-                    ->getForm();
-
-
-        $chooseDogForm->handleRequest($request);
-
-        if($chooseDogForm->isSubmitted())
-        {
-            $result = $_POST['form']['id'];
-            return $this->redirectToRoute('manage_dog', [
-                'id' => $result,
-            ]);
-
-        }
-
-
-        return $this->render('dog/admin_form.html.twig', [
-            'chooseDog' => $chooseDogForm->createView(),
-            'form_action' => 'Modifier un chien',
-        ]);
-    }
 }
